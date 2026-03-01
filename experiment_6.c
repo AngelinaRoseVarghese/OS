@@ -4,7 +4,7 @@ int main()
 	int count,i,j,temp,choice;
 	printf("How many processor do you want: ");
 	scanf("%d",&count);
-	int output[6][count];
+	int output[7][count];
 	for(i=0;i<count;i++)
 	{
 		output[0][i]=i+1;
@@ -13,7 +13,7 @@ int main()
 		printf("Enter the burst time of P-%d: ",i+1);
 		scanf("%d",&output[2][i]);
 	}
-	printf("What do you want:\n1. FCFS\n2. SJF Non Pre-emptive\n3. SJF Pre-emptive\n4. Priority non pre-emptive\n5. Round Robin\n5. Exit\n");
+	printf("What do you want:\n1. FCFS\n2. SJF Non Pre-emptive\n3.Priority pre-emptive4. Priority non pre-emptive\n5. Round Robin\n5. Exit\n");
 	scanf("%d",&choice);
 	while(choice!=6)
 	{
