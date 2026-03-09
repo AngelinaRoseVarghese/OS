@@ -2,7 +2,7 @@
 
 int main()
 {
-	int count,i,j,temp,choice,quantum;
+	int count,i,j,temp,choice,quantum,avg=0;
 	printf("How many processor do you want: ");
 	scanf("%d",&count);
 
@@ -61,7 +61,7 @@ int main()
 				output[5][i]=output[4][i]-output[2][i];
 			}
 
-			printf("\nPID\tAT\tBT\tCT\tTAT\tWT\n");
+			printf("\nPID\AT\BT\CT\TAT\WT\n");
 
 			for(i=0;i<count;i++)
 			{
@@ -69,6 +69,13 @@ int main()
 				output[0][i],output[1][i],output[2][i],
 				output[3][i],output[4][i],output[5][i]);
 			}
+			avg = 0;
+			for(i=0;i<count;i++)
+			{
+				avg=avg+output[5][i];
+			}
+			avg=avg/count;
+			printf("Avg.WT:%d\n",avg);
 		}
 
 /* ---------------- SJF Non Preemptive ---------------- */
@@ -96,14 +103,22 @@ int main()
 			for(i=1;i<count;i++)
 				output[3][i]=output[3][i-1]+output[2][i-1];
 
-			printf("\nPID\tAT\tBT\tWT\n");
+			printf("\nPID\AT\BT\WT\n");
 
 			for(i=0;i<count;i++)
 			{
 				printf("P%d\t%d\t%d\t%d\n",
 				output[0][i],output[1][i],output[2][i],output[3][i]);
 			}
+			avg = 0;
+			for(i=0;i<count;i++)
+			{
+				avg=avg+output[3][i];
+			}
+			avg=avg/count;
+			printf("Avg.WT:%d\n",avg);
 		}
+			
 
 /* ---------------- Priority Non Preemptive ---------------- */
 
@@ -149,6 +164,14 @@ int main()
 				printf("P%d\t%d\t%d\t\t%d\n",
 				output[0][i],output[2][i],output[6][i],output[3][i]);
 			}
+			avg = 0;
+			for(i=0;i<count;i++)
+			{
+				output[5][i] = output[3][i] - output[2][i];
+				avg=avg+output[5][i];
+			}
+			avg=avg/count;
+			printf("Avg.WT:%d\n",avg);
 		}
 
 /* ---------------- Round Robin ---------------- */
@@ -196,6 +219,14 @@ int main()
         printf("P%d\t%d\t\t%d\n",
         output[0][i],output[2][i],output[3][i]);
     }
+	avg = 0;
+	for(i=0;i<count;i++)
+			{
+				output[5][i] = output[3][i] - output[1][i] - output[2][i];
+				avg=avg+output[5][i];
+			}
+	avg=avg/count;
+			printf("Avg.WT:%d\n",avg);
 }
 
 		printf("\nWhat do you want:\n1.FCFS\n2.SJF Non Pre-emptive\n3.Priority Non Pre-emptive\n4.Round Robin\n5.Exit\n");
